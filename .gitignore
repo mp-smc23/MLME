@@ -122,3 +122,15 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+.DS_Store
+
+musdb18.zip
+
+musdb18/
+
+babyslakh_16k/
+
+babyslakh_16k.tar.gz
+
+datasets/

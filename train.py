@@ -29,12 +29,9 @@ model.add(keras.layers.Rescaling(1./255))
 
 # Convolutional layers
 model.add(keras.layers.Conv2D(16,3, padding='same', activation='relu'))
-model.add(keras.layers.Conv2D(16,3, padding='same', activation='relu'))
 model.add(keras.layers.MaxPooling2D())
 model.add(keras.layers.Conv2D(32,3, padding='same', activation='relu'))
-model.add(keras.layers.Conv2D(32,3, padding='same', activation='relu'))
 model.add(keras.layers.MaxPooling2D())
-model.add(keras.layers.Conv2D(64,3, padding='same', activation='relu'))
 model.add(keras.layers.Conv2D(64,3, padding='same', activation='relu'))
 model.add(keras.layers.MaxPooling2D())
 model.add(keras.layers.Dropout(0.2))
@@ -44,7 +41,7 @@ model.add(keras.layers.Flatten())
 model.add(keras.layers.Dense(128, activation='relu'))
 model.add(keras.layers.Dense(config.n_classes, activation='softmax'))
 
-model.compile(optimizer=keras.optimizers.Adam(learning_rate=1e-3), 
+model.compile(optimizer=keras.optimizers.SGD(), 
                      loss='categorical_crossentropy', 
                      metrics=[keras.metrics.CategoricalAccuracy(),
                               keras.metrics.AUC(),
@@ -63,7 +60,7 @@ model_checkpoint_callback = keras.callbacks.ModelCheckpoint(
     save_best_only=True)
 
 # Model is saved at the end of every epoch, if it's the best seen so far.
-history = model.fit(train_ds, validation_data=test_ds, epochs=200, class_weight=class_weights, callbacks=[model_checkpoint_callback])
+history = model.fit(train_ds, validation_data=test_ds, epochs=300, class_weight=class_weights, callbacks=[model_checkpoint_callback])
 
 # Save the model
 model.save_weights("models/instrument-recognition.weights.h5")

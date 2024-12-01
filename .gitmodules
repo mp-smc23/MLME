@@ -1,6 +1,0 @@
-[submodule "medleydb"]
-	path = medleydb
-	url = https://github.com/marl/medleydb.git
-[submodule "slakh-utils"]
-	path = slakh-utils
-	url = https://github.com/ethman/slakh-utils.git
